@@ -1,12 +1,16 @@
 <ion-view title="Home">
-    <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <ion-content ng-controller="homeCtrl" overflow-scroll="true" padding="true" class="has-header">
         <h2>What do you want to buy today?</h2>
         <form class="list">
             <label class="item item-input" name="product_name">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="search" placeholder="Enter product">
+                <input ng-model="data.product" type="search" placeholder="Enter product">
             </label>
         </form>
-        <button class="button button-positive button-block ">Search</button>
+        <button ng-click="saveProductSearch()" class="button button-positive button-block ">Search</button>
+        <p>You entered {{productSearch}}</p>
+        <ul ng-repeat="p in productList">
+            <li>{{p.first}}</li>
+        </ul>
     </ion-content>
 </ion-view>
