@@ -16,26 +16,21 @@ angular.module('app.controllers', [])
 
 })
    
-.controller('homeCtrl', function($scope) {
-	$scope.data = {};
-	$scope.productSearch = "";
-	$scope.productList = [];
-	  
-	$scope.saveProductSearch = function() {
-		if ($scope.data.product)
-	    {
-	      $scope.productSearch = $scope.data.product;
-	      $scope.productList.push({
-	      	first: $scope.productSearch
-	      });
-	    } 
-	    else 
-	    {
-	      alert("Please fill out the field before submitting!");
-	    }
-	}
+.controller('homeCtrl', function($scope, $state, formData) {
+	$scope.product = {};
+
+	$scope.submitForm = function(product) {
+		if (product.name) {
+			console.log("Submitting Form", product);
+			formData.updateForm(product);
+			console.log("Retrieving form from service", formData.getForm());
+			$state.go('menu.myOrders');
+		} else {
+			alert("Please fill out some information for the user");
+		}
+	};
 })
    
-.controller('myOrdersCtrl', function($scope) {
-
+.controller('myOrdersCtrl', function($scope, formData) {
+	$scope.product = formData.getForm();
 })

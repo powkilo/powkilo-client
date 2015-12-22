@@ -4,7 +4,14 @@ angular.module('app.services', [])
 
 }])
 
-.service('BlankService', [function(){
-
+.service('formData', [function(){
+	return {
+		form: {},
+		getForm: function() {
+			return this.form;
+		},
+		updateForm: function(form) {
+			this.form = form;
+		}
+	}
 }]);
-
