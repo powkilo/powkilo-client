@@ -6,12 +6,12 @@ angular.module('app.services', [])
 
 .service('formData', [function(){
 	return {
-		form: {},
+		form: [],
 		getForm: function() {
 			return this.form;
 		},
-		updateForm: function(form) {
-			this.form = form;
+		updateForm: function(item) {
+			this.form.push(item);
 		}
 	}
 }]);

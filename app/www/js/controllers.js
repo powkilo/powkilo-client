@@ -21,16 +21,15 @@ angular.module('app.controllers', [])
 
 	$scope.submitForm = function(product) {
 		if (product.name) {
-			console.log("Submitting Form", product);
-			formData.updateForm(product);
-			console.log("Retrieving form from service", formData.getForm());
+			formData.updateForm(angular.copy(product));
+			$scope.product = {};
 			$state.go('menu.myOrders');
 		} else {
-			alert("Please fill out some information for the user");
+			alert("Please enter product name");
 		}
 	};
 })
    
 .controller('myOrdersCtrl', function($scope, formData) {
-	$scope.product = formData.getForm();
+	$scope.products = formData.getForm();
 })
